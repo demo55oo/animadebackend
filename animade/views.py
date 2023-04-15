@@ -12,6 +12,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, throttle_classes,permission_classes
+from  .serializers import UserSerializer
 
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
@@ -80,16 +81,15 @@ class LoginAPI(KnoxLoginView):
             login(request, user)
             return super(LoginAPI, self).post(request, format=None)
 
-
 class MainUser(generics.RetrieveAPIView):
   permission_classes = [
       permissions.IsAuthenticated
   ]
-  serializer_class = UserSerializer()
+  serializer_class = UserSerializer
 
   def get_object(self):
 
-    return self.request.user
+    return self.request.userr
 
 class CreateProfileAPIView(APIView):
     """
