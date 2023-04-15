@@ -17,7 +17,7 @@ class ChangePasswordSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields = ["id", "first_name", "last_name", "username"]
+    fields = ["id", "username", "email"]
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
