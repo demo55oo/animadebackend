@@ -45,5 +45,8 @@ urlpatterns = [
     path('api/users/createddesigns/', get_user_created_designs, name='get-user-created-designs'),
     path('api/createddesign/<int:pk>/delete/', delete_created_design, name='delete-created-design'),
     path('api/createddesign/add/', add_created_design, name='add-created-design'),
+    path('api/image_to_image/', image_to_image, name='image_to_image'),
+    path('api/text_to_image/', text_to_image, name='text_to_image'),
+
 ]
 

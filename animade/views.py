@@ -24,7 +24,49 @@ from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSeria
     CreatedDesignSerializer, SavedDesignSerializer
 from .permissions import OwnerPermission
 
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
+@csrf_exempt
+def text_to_image(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)  # Convert the JSON data to a Python dictionary
+
+        # Replace YOUR_STABLE_DIFFUSION_API_KEY with your actual API key
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": "YOUR_STABLE_DIFFUSION_API_KEY",
+        }
+
+        # Make the request to the Stable Diffusion API using the data received from the frontend
+        try:
+            response = requests.post('https://stablediffusionapi.com/api/v3/text2img', json=data, headers=headers)
+            return JsonResponse(response.json())
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request method."}, status=400)
+@csrf_exempt
+def image_to_image(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)  # Convert the JSON data to a Python dictionary
+
+        # Replace YOUR_STABLE_DIFFUSION_API_KEY with your actual API key
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": "YOUR_STABLE_DIFFUSION_API_KEY",
+        }
+
+        # Make the request to the Stable Diffusion API using the data received from the frontend
+        try:
+            response = requests.post('https://stablediffusionapi.com/api/v3/img2img', json=data, headers=headers)
+            return JsonResponse(response.json())
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request method."}, status=400)
 class ChangePasswordView(generics.UpdateAPIView):
     """
     An endpoint for changing password.
