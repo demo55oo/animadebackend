@@ -37,6 +37,9 @@ urlpatterns = [
     path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
     path('api/profile/create/', CreateProfileAPIView.as_view()),
     path('api/users/<user_id>/profile/', ProfileAPIView.as_view()),
+path('api/users/profile/', ProfileAPIView.as_view()),
+path('api/decrease-designs/', decrease_designs_remaining),
+
     # path('api/createddesign/', CreatedDesignAPIView.as_view()),
     # path('api/createddesign/<int:pk>/', CreatedDesignRUDView.as_view()),
     # path('api/createddesign/<int:pk>/save/', SaveDesignAPIView.as_view()),
@@ -47,6 +50,8 @@ urlpatterns = [
     path('api/createddesign/add/', add_created_design, name='add-created-design'),
     path('api/image_to_image/', image_to_image, name='image_to_image'),
     path('api/text_to_image/', text_to_image, name='text_to_image'),
+    path('get_user_plan_details/', get_user_plan_details, name='get_user_plan_details'),
+path('api/change-subscription-plan/', change_subscription_plan),
 
 ]
 
